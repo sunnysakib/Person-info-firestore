@@ -19,6 +19,7 @@ let personRender = (doc) => {
   list.appendChild(li);
   li.appendChild(cross);
 
+ 
   // DELETING DATA
   cross.addEventListener("click", (e) => {
     e.stopPropagation();
@@ -27,16 +28,22 @@ let personRender = (doc) => {
   });
 };
 
-// getting data
-db.collection("persons")
-  .orderBy("name")
-  .get()
-  .then((snapshot) => {
-    snapshot.docs.forEach((doc) => {
-      console.log(doc.data());
-      personRender(doc);
-    });
-  });
+
+// Realtime data add and delete
+db.collection("persons").orderBy("name").onSnapshot(snapshot =>{
+  let changes = snapshot.docChanges();
+  changes.forEach(change => {
+    if (change.type === "added") {
+      personRender(change.doc);
+  }
+  if (change.type === "removed") {
+      let li = list.querySelector("[data-id ="+ change.doc.id + "]");
+      list.removeChild(li);
+  }
+  })
+ 
+})
+
 
 // ADD DATA
 form.addEventListener("submit", (e) => {
