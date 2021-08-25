@@ -48,10 +48,15 @@ db.collection("persons").orderBy("name").onSnapshot(snapshot =>{
 // ADD DATA
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  db.collection("persons").add({
-    name: form.name.value,
-    address: form.address.value,
-  });
+  if(form.name.value != "" && form.address.value != ""){
+    db.collection("persons").add({
+      name: form.name.value,
+      address: form.address.value,
+    });
+  }else{
+    alert("Please Enter input value")
+  }
+  
   form.name.value = "";
   form.address.value = "";
 });
