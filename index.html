@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- firestore -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&family=Ubuntu:wght@500;700&family=Yanone+Kaffeesatz&display=swap"
+      rel="stylesheet"
+    />
+    <!-- stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+    <title>Person Info</title>
+  </head>
+
+  <body>
+    <h1>Person Info</h1>
+
+    <div class="content">
+      <form id="add-person-form" action="">
+        <input type="text" name="name" placeholder="Enter Name"/>
+        <input type="text" name="address" placeholder="Enter Address"/>
+        <button>Add Person</button>
+      </form>
+      <ul id="person-list"></ul>
+    </div>
+
+    
+    
+    
+    <script>
+      var firebaseConfig = {
+        apiKey: "AIzaSyCYroWKgfjVyTXQX1Wk99D3lRZ68b9If-k",
+        authDomain: "person-info-cbc05.firebaseapp.com",
+        projectId: "person-info-cbc05",
+        storageBucket: "person-info-cbc05.appspot.com",
+        messagingSenderId: "547655073697",
+        appId: "1:547655073697:web:db117ba639a6923ebb15e0",
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      const db = firebase.firestore();
+      db.settings({ timestampsInSnapshots: true });
+    </script>
+    <script src="app.js"></script>
+  </body>
+</html>
